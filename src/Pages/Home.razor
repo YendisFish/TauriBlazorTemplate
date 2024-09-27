@@ -1,0 +1,38 @@
+﻿@page "/"
+@inject IJSInProcessRuntime JsRuntime
+
+<div class="container">
+    <h1>Welcome to Tauri!</h1>
+
+    <div class="row">
+        <a href="https://tauri.app" target="_blank">
+            <img src="img/tauri.svg" class="logo tauri" alt="Tauri logo"/>
+        </a>
+        <a href="https://dotnet.microsoft.com/en-us/apps/aspnet/web-apps/blazor" target="_blank">
+            <img src="img/blazor.png" class="logo blazor" alt="Blazor logo"/>
+        </a>
+    </div>
+
+    <p>Click on the Tauri and Blazor logos to learn more.</p>
+
+    <form class="row" @onsubmit="async () => await GreetAsync()" @onsubmit:preventDefault="true">
+        <input id="greet-input" placeholder="Enter a filename..." @bind="GreetInput"/>
+        <button type="submit">Read File</button>
+    </form>
+
+    <p>@content</p>
+    <p>@size</p>
+</div>
+
+@code
+{
+    private string? GreetInput { get; set; }
+    private string? content { get; set; }
+    private int? size { get; set; }
+
+    private async Task GreetAsync()
+    {
+        content = await File.ReadAllTextAsync(JsRuntime, GreetInput ?? throw new NullReferenceException());
+        size = (await File.ReadAllBytesAsync(JsRuntime, GreetInput)).Length;
+    }
+}
