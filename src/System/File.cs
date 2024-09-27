@@ -23,8 +23,13 @@ public class File
         return bts;
     }
 
+    public static async Task AppendAllTextAsync(IJSInProcessRuntime runtime, string filename, string contents)
+    {
+        await runtime.InvokeVoidAsync("__TAURI__.tauri.invoke", "append_to_file", new { name = filename, content = contents });
+    }
+
     public static async Task CreateAsync(IJSInProcessRuntime runtime, string filename)
     {
-        await runtime.InvokeAsync<string>("__TAURI__.tauri.invoke", "create_file", new { path = filename });
+        await runtime.InvokeVoidAsync("__TAURI__.tauri.invoke", "create_file", new { path = filename });
     }
 }

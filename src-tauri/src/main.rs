@@ -10,7 +10,8 @@ fn main() {
     tauri::Builder::default()
         .invoke_handler(tauri::generate_handler![file::read_file_string, 
                                                  file::read_file_bytes, 
-                                                 file::append_to_file])
+                                                 file::append_to_file,
+                                                 file::create_file])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }

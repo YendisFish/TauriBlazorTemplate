@@ -1,0 +1,21 @@
+{
+    "$schema": "http://json.schemastore.org/template",
+    "author": "YendisFish",
+    "classifications": ["Web", "Blazor", "Tauri"],
+    "identity": "YendisFish.TauriBlazor",
+    "name": "Tauri Blazor Interop",
+    "shortName": "tauriblazor", 
+    "tags": {
+      "language": "C#"
+    },
+    "sourceName": "TauriApp", 
+    "preferNameDirectory": true,
+    "symbols": {
+      "ProjectName": {
+        "type": "parameter",
+        "datatype": "string",
+        "replaces": "TauriApp",
+        "defaultValue": "TauriApp"
+      }
+    }
+  }
